@@ -1,16 +1,16 @@
 module MathGame
     class Player
 
-        attr_accessor :name
+        attr_accessor :name, :lives
 
         def initialize(name)
             @name = name
             @lives = 3
-            puts "Player name is #{@name}"
+            puts "#{@name} starts with #{@lives} lives."
         end
 
         def lose_life
-            @live -= 1
+            @lives -= 1
         end
 
     end
