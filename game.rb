@@ -1,5 +1,7 @@
 module MathGame
+    
     class Game
+
         def self.main 
             game = Game.new
             game.start
@@ -26,7 +28,7 @@ module MathGame
         end
 
         def start
-            puts "Game starting."
+            puts "Our math game is about to start!"
             until game_over? do
                 puts "It is #{current_player.name}'s turn."
                 # TODO: Ask a Question
@@ -34,6 +36,8 @@ module MathGame
                 print_score
                 change_turns
             end
+            # TODO change to a final score print out.
+            print_score
         end
 
         def game_over?
