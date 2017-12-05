@@ -12,7 +12,19 @@ module MathGame
                 MathGame::Player.new('Player 1'),
                 MathGame::Player.new('Player 2')
             ]
-            @current_player = 0
+            @current_player = rand(0..1)
+        end
+
+        def greet_players
+            @players.each do |player|
+                puts "Hello #{player.name}"
+                puts 'Would you like to change your name? (y/N) '
+                if gets.chomp == 'y'
+                    puts 'Enter your new name: '
+                    player.name = gets.chomp
+                    puts "Your new name is: #{player.name}"
+                end
+            end
         end
 
         def current_player
@@ -54,6 +66,8 @@ module MathGame
         
         def start
             puts "Our math game is about to start!"
+            greet_players
+            puts "Randomly selecting the first player..."
             until game_over? do
                 puts "--New Turn--"
                 puts "It is #{current_player.name}'s turn."
@@ -61,7 +75,6 @@ module MathGame
                 print_score
                 change_turns
             end
-            # TODO change to a final score print out.
             declare_winner
         end
 
