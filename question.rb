@@ -6,7 +6,7 @@ module MathGame
             @second_num = rand(1...20)
         end
 
-        def question
+        def clue
             "What is the sum of #{@first_num} and #{@second_num}?"
         end
 

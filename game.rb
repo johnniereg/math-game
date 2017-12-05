@@ -2,37 +2,32 @@ module MathGame
 
     class Game
 
+        attr_accessor :current_player
+
         def self.main 
             game = Game.new
             game.start
         end
 
         def initialize
+            puts 'Welcome to the Math Game!'
             @players = [
-                MathGame::Player.new('Player 1'),
-                MathGame::Player.new('Player 2')
+                MathGame::Player.new,
+                MathGame::Player.new
             ]
-            @current_player = rand(0..1)
+            @player_position = rand(0..1)
         end
 
-        def greet_players
-            @players.each do |player|
-                puts "Hello #{player.name}"
-                puts 'Would you like to change your name? (y/N) '
-                if gets.chomp == 'y'
-                    puts 'Enter your new name: '
-                    player.name = gets.chomp
-                    puts "Your new name is: #{player.name}"
-                end
-            end
+        def pick_first_player
+
         end
 
         def current_player
-            @players[@current_player]
+            @players[@player_position]
         end
 
         def change_turns
-            @current_player = (@current_player + 1) % @players.length
+            @player_position = (@player_position + 1) % @players.length
         end
 
         def player_loses_life
@@ -49,7 +44,7 @@ module MathGame
         
         def ask_question
             question = MathGame::Question.new
-            puts question.question
+            puts question.clue
             player_answer = gets.chomp
             if player_answer.to_i == question.answer
                 puts "#{current_player.name}: You got it!"
@@ -66,7 +61,6 @@ module MathGame
         
         def start
             puts "Our math game is about to start!"
-            greet_players
             puts "Randomly selecting the first player..."
             until game_over? do
                 puts "--New Turn--"
