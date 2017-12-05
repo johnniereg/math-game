@@ -1,5 +1,5 @@
 module MathGame
-    
+
     class Game
 
         def self.main 
@@ -31,8 +31,7 @@ module MathGame
             puts "Our math game is about to start!"
             until game_over? do
                 puts "It is #{current_player.name}'s turn."
-                # TODO: Ask a Question
-                player_loses_life
+                ask_question
                 print_score
                 change_turns
             end
@@ -49,6 +48,20 @@ module MathGame
                 puts "#{player.name} has #{player.lives} lives remaining."
             end
         end
+
+        def ask_question
+            question = MathGame::Question.new
+            puts question.question
+            player_answer = gets.chomp
+            if player_answer.to_i == question.answer
+                puts "You got it!"
+            else
+                puts "Sorry, that's incorrect."
+                player_loses_life
+            end
+        end
+
+            
 
     end
 end
